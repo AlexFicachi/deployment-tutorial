@@ -121,6 +121,25 @@ function App() {
     setInputValue(e.target.value);
   };
 
+  const deleteVulgarity = async () => {
+    try {
+      const URL = `${HOST}/api/delete-vulgarity`
+      await fetch(URL, {
+        method: "DELETE",
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ test: "example" })
+      });
+      fetchTodos();
+    } catch (error) {
+      console.error(error)
+    }
+  }
+    
+
+
   return (
     <div>
       <form onSubmit={addTodo}>
@@ -128,6 +147,7 @@ function App() {
         <input type="submit" />
       </form>
       <ul>{list}</ul>
+      <button onClick={deleteVulgarity}>Delete Vulgarity</button>
     </div>
   );
 }
