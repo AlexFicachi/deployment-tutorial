@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 
-const HOST = "http://localhost:1337";
+let HOST;
+if (import.meta.env.DEV) {
+    HOST = "http://localhost:1337";
+} else {
+    HOST = "https://deployment-tutorial-production.up.railway.app"
+}
 
 function App() {
 
