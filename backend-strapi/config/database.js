@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = ({ env }) => {
-  const client = 'postgres'// env('DATABASE_CLIENT', 'sqlite');
+  const client = env('DATABASE_CLIENT', 'sqlite');
 
   const connections = {
     mysql: {
@@ -49,12 +49,12 @@ module.exports = ({ env }) => {
     },
     postgres: {
       connection: {
-        connectionString: "postgresql://postgres:l8nVVaIeoIR4T3VH83B0@containers-us-west-160.railway.app:6290/railway", // env('DATABASE_URL'),
-        host: "https://containers-us-west-160.railway.app/", // env('DATABASE_HOST', 'localhost'),
-        port: 6290, // env.int('DATABASE_PORT', 5432),
-        database: "railway", // env('DATABASE_NAME', 'strapi'),
-        user: "postgres", // env('DATABASE_USERNAME', 'strapi'),
-        password: "l8nVVaIeoIR4T3VH83B0", // env('DATABASE_PASSWORD', 'strapi'),
+        connectionString: env('DATABASE_URL'),
+        host: env('DATABASE_HOST', 'localhost'),
+        port: env.int('DATABASE_PORT', 5432),
+        database: env('DATABASE_NAME', 'strapi'),
+        user: env('DATABASE_USERNAME', 'strapi'),
+        password: env('DATABASE_PASSWORD', 'strapi'),
         ssl: env.bool('DATABASE_SSL', false) && {
           key: env('DATABASE_SSL_KEY', undefined),
           cert: env('DATABASE_SSL_CERT', undefined),

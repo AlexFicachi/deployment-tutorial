@@ -16,6 +16,7 @@ function App() {
   const fetchTodos = async () => {
       const response = await fetch(`${HOST}/api/todo-items`)
       const jsonResponse = await response.json()
+      console.log(jsonResponse)
       if (!jsonResponse.data) return null;
       const todoItems = jsonResponse.data.map((todoItemCollection) => {
         return {
