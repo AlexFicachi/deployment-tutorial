@@ -17,5 +17,15 @@ module.exports = createCoreController(
             const vulgarWords = ["e"]
             return strapi.service("api::todo-item.todo-item").deleteTodoItemsContaining(ctx, vulgarWords);
         },
+        find: async (ctx) => {
+            const todoItems = await strapi.entityService.findMany('api::todo-item.todo-item', { sort: 'createdAt' });
+
+            return {
+                data: todoItems.map(todoItem => ({
+                    id: todoItem.id,
+                    attributes: todoItem
+                }))
+            }
+        },
     }),
 );
